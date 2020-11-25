@@ -1,4 +1,11 @@
 const cards = document.querySelectorAll('.memory-card');
+let scoreDisplay = document.getElementById("score");
+
+let totalCards = 16;
+let discoveredCards = 0;
+
+let unsuccessfulDraws = 0;
+let score = 0;
 
 let hasFlippedCard = false;
 let lockBoard = false;
@@ -28,10 +35,37 @@ function flipCard(){
 function checkForMatch(){
     let isMatch = firstCard.dataset.number === secondCard.dataset.number;
 
-    isMatch ? disabledCards() : unflipCards();
+    isMatch ? cardsMatched() : unflipCards();
+
+    
 }
 
-function disabledCards(){
+function cardsMatched(){
+    disableCards();
+
+    updateScore();
+
+    discoveredCards = discoveredCards+2;
+
+    if(discoveredCards >= totalCards){
+        win();
+    }
+}
+
+function updateScore(){
+    score = score + Math.round(20/unsuccessfulDraws);
+    scoreDisplay.innerHTML = score;
+
+    unsuccessfulDraws = 0;
+}
+
+
+
+function win(){
+    scoreDisplay.innerHTML = score + " 🥳 You won! 🥳";
+}
+
+function disableCards(){
     firstCard.removeEventListener('click',flipCard);
     secondCard.removeEventListener('click',flipCard);
 
@@ -39,6 +73,8 @@ function disabledCards(){
 }
 
 function unflipCards(){
+
+    unsuccessfulDraws = unsuccessfulDraws+1;
 
     lockBoard = true;
 
@@ -61,5 +97,6 @@ function resetBoard(){
         card.style.order = randomPos;
     }); 
 })();
+
 
 cards.forEach(card => card.addEventListener('click',flipCard));
