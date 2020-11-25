@@ -63,13 +63,22 @@ function updateScore(){
 
 function win(){
     scoreDisplay.innerHTML = score + " 🥳 You won! 🥳";
+    cards.forEach(card => {
+        card.classList.add("won");
+    }); 
 }
 
 function disableCards(){
     firstCard.removeEventListener('click',flipCard);
     secondCard.removeEventListener('click',flipCard);
 
-    resetBoard(); 
+    setTimeout(() => {
+        firstCard.classList.add('discovered');
+        secondCard.classList.add('discovered');
+        resetBoard(); 
+    },500);
+
+    
 }
 
 function unflipCards(){
@@ -83,7 +92,7 @@ function unflipCards(){
         secondCard.classList.remove('flip');
 
         resetBoard(); 
-    }, 1500);
+    }, 1200);
 }
 
 function resetBoard(){
