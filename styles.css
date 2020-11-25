@@ -127,7 +127,6 @@ h1{
   
     .memory-card {
         width:calc(25% - 4x) ;
-        height: calc(25% - 4px);
         margin: 4px;
     }
 
