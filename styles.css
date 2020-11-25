@@ -25,6 +25,7 @@ h1{
 .scoreDisplay{
     text-align: right;
     margin-right: 5px;
+    
 }
 
 .memory-game{    
@@ -42,17 +43,33 @@ h1{
     transform: scale(1);
     transform-style: preserve-3d;
     transition: transform .5s;
-;}
+}
+
+
 
 .memory-card:active{
     transform: scale(.97);
     transition: transfrom .2s;
 }
 
+
 .memory-card.flip{
     transform: rotateY(180deg);
 
 }
+
+.memory-card.discovered .front-face{
+    background: deeppink;
+    transition: background .3s;
+
+}
+
+.memory-card.won{
+    animation: pulse 2s infinite linear;
+
+}
+
+
 
 .front-face,
 .back-face{
@@ -66,12 +83,38 @@ h1{
     
 }
 
+.back-face:hover{
+    transform: scale(.98);
+    transition: transfrom .2s;
+}
+
 .front-face{
     padding:10px;
     transform: rotateY(180deg);
 }
 
+@keyframes turner{
+    from{  transform: rotateY(0deg)   }
+    to  {  transform: rotateY(360deg) }
+}
 
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 20, 147, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 20, 147, 0);
+    }
+}
+ 
 
 @media screen and (max-width: 750px) and (max-height: 500px) {
     .content {
