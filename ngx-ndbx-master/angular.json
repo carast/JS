@@ -1,0 +1,207 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "ngx-ndbx": {
+      "root": "packages/ngx-ndbx",
+      "sourceRoot": "packages/ngx-ndbx/src",
+      "projectType": "library",
+      "prefix": "nx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "packages/ngx-ndbx/tsconfig.build.json",
+            "project": "packages/ngx-ndbx/src/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ndbx/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "packages/ngx-ndbx/test.ts",
+            "tsConfig": "packages/ngx-ndbx/tsconfig.spec.json",
+            "karmaConfig": "packages/ngx-ndbx/karma.conf.js"
+          },
+          "configurations": {
+            "viewengine": {
+              "tsConfig": "packages/ngx-ndbx/tsconfig.spec.viewengine.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tslintConfig": "packages/ngx-ndbx/tslint.json",
+            "tsConfig": [
+              "packages/ngx-ndbx/tsconfig.lib.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "documentation": {
+      "root": "packages/documentation/",
+      "sourceRoot": "packages/documentation/src",
+      "projectType": "application",
+      "prefix": "doc",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "aot": true,
+            "outputPath": "dist/documentation",
+            "index": "packages/documentation/src/index.html",
+            "main": "packages/documentation/src/main.ts",
+            "polyfills": "packages/documentation/src/polyfills.ts",
+            "tsConfig": "packages/documentation/tsconfig.app.json",
+            "assets": [
+              "packages/documentation/src/favicon.png",
+              "packages/documentation/src/assets",
+              {
+                "glob": "**/*",
+                "input": "packages/ngx-ndbx/documentation/generated",
+                "output": "/ndbx-viewer/"
+              },
+              {
+                "glob": "**/*",
+                "input": "packages/ngx-ndbx/documentation/assets/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "packages/ngx-docs-ui/src/lib/assets/",
+                "output": "/docs-assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "dist/ngx-ndbx/themes/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "node_modules/@angular/cdk/overlay-prebuilt.css",
+              "packages/documentation/src/styles.scss",
+              "packages/ngx-ndbx/src/shared-styles/utilities.scss",
+              "packages/ngx-docs-ui/src/lib/styles/global-styles.scss",
+              "node_modules/highlight.js/styles/atom-one-light.css"
+            ],
+            "scripts": [
+              "node_modules/what-input/dist/what-input.js",
+              "packages/ngx-docs-ui/src/lib/viewer/egg.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "packages/documentation/src/environments/environment.ts",
+                  "with": "packages/documentation/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "tsConfig": "packages/documentation/tsconfig.build.json"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "documentation:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "documentation:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "documentation:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "packages/documentation/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-docs-ui": {
+      "root": "packages/ngx-docs-ui",
+      "sourceRoot": "packages/ngx-docs-ui/src",
+      "projectType": "library",
+      "prefix": "nxv",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "packages/ngx-docs-ui/tsconfig.build.json",
+            "project": "packages/ngx-docs-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-docs-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "packages/ngx-docs-ui/test.ts",
+            "tsConfig": "packages/ngx-docs-ui/tsconfig.spec.json",
+            "karmaConfig": "packages/ngx-docs-ui/karma.conf.js"
+          },
+          "configurations": {
+            "viewengine": {
+              "tsConfig": "packages/ngx-docs-ui/tsconfig.spec.viewengine.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "packages/ngx-docs-ui/tsconfig.lib.json",
+              "packages/ngx-docs-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "documentation"
+}

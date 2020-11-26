@@ -1,0 +1,65 @@
+/doc
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+.vscode/
+
+# compiled output
+**/dist
+/dist-lib
+/tmp
+/out-tsc
+tools/tslint-rules/**/*.js
+tools/tslint-rules/**/*.js.map
+
+# angular cli profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+/access.token
+/offline.token
+/adp-2fa
+
+# karma generated junit test results
+**/karma-test-results
+**/coverage
+
+# ignore cli generated files
+**/*/documentation/generated/
+
+# backstop
+/tests

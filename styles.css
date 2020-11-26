@@ -8,28 +8,30 @@
 body{
     height:100vh;
     background: #f5f5f5;
-    padding: 24px;  
+    padding: 3em;  
 }
 
 .content{
     justify-content: center;
     align-items: center;
-    width:640px;
+    width: 55em;
     margin: auto; 
 }
 
 h1{
     margin-bottom: 24px;
+    font-size: 4em;
 }
 
 .scoreDisplay{
     text-align: right;
     margin-right: 5px;
+    font-size: 1em;
     
 }
 
 .memory-game{    
-    height: 640px; 
+    height: 55em; 
     display: flex;
     flex-wrap: wrap;
     perspective: 1000px;
@@ -127,13 +129,18 @@ h1{
 }
  
 
-@media screen and (max-width: 750px) and (max-height: 750px) {
+@media (max-width : 50em){
+
+    body{
+        padding:16px;
+    }
+
     .content {
-        width: 500px;
+        width: 30em;
     }
 
     .memory-game {
-      height: 500px;
+      height: 30em;
     }
   
     .memory-card {

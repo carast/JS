@@ -1,0 +1,14 @@
+---
+applications:
+- name: ((appName))
+  memory: 128M
+  disk_quota: 128M
+  instances: 1
+  buildpack: staticfile_buildpack
+  path: ((path))
+  routes:
+  - route: ((appName)).apps.adp.allianz
+  - route: ((appName)).amos.test.apps.adp.allianz
+  services:
+  - logforwarder
+  - ci_no_stop_nightly
