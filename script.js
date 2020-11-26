@@ -37,7 +37,6 @@ function checkForMatch(){
 
     isMatch ? cardsMatched() : unflipCards();
 
-    
 }
 
 function cardsMatched(){
@@ -53,7 +52,7 @@ function cardsMatched(){
 }
 
 function updateScore(){
-    score = score + Math.round(20/unsuccessfulDraws);
+    score = score + Math.round(20/(unsuccessfulDraws+1));
     scoreDisplay.innerHTML = score;
 
     unsuccessfulDraws = 0;
