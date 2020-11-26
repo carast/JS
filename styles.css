@@ -40,27 +40,34 @@ h1{
     height: calc(25% - 10px);
     margin: 5px;
     position:relative;
+    -webkit-transform: scale(1);
     transform: scale(1);
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    -webkit-transition: transform .5s;
     transition: transform .5s;
 }
 
 
 
 .memory-card:active{
+    -webkit-transform: scale(.97);
     transform: scale(.97);
     transition: transfrom .2s;
 }
 
 
 .memory-card.flip{
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 
 }
 
 .memory-card.discovered .front-face{
     background: deeppink;
+    -webkit-transition: background .3s;
     transition: background .3s;
+    -webkit-transition: background .3s;
 
 }
 
@@ -79,17 +86,21 @@ h1{
     border-radius: 5px;
     background: #ffffff;
     border: 2px solid deeppink;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     
 }
 
 .back-face:hover{
+    -webkit-transform: scale(.98);
     transform: scale(.98);
+    -webkit-transition: transfrom .2s;
     transition: transfrom .2s;
 }
 
 .front-face{
     padding:10px;
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
@@ -118,11 +129,11 @@ h1{
 
 @media screen and (max-width: 750px) and (max-height: 750px) {
     .content {
-        width: 400px;
+        width: 500px;
     }
 
     .memory-game {
-      height: 400px;
+      height: 500px;
     }
   
     .memory-card {
